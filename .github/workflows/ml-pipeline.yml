@@ -51,11 +51,11 @@ jobs:
           cache: "pip"                          # slide 24: pip caching saves 4 min
 
       - name: Install dependencies
-        run: pip install -r requirements-dev.txt && ls -lah data/raw/telco_train.csv
+        run: pip install -r requirements-dev.txt 
 
       # ── Code style ──────────────────────────────────────────────────────────
       - name: flake8 — code style
-        run: flake8 src/ tests/ --max-line-length 100 --extend-ignore=E203 && ls -lah data/raw/telco_train.csv
+        run: flake8 src/ tests/ --max-line-length 100 --extend-ignore=E203 
 
       - name: black — formatting check
         run: black --check src/ tests/
@@ -65,7 +65,7 @@ jobs:
 
       # ── Schema validation FIRST (slide 27: Pandera runs before training) ────
       - name: pandera — data schema validation
-        run: pytest tests/unit/test_schema.py -v --tb=short && ls -lah data/raw/telco_train.csv
+        run: pytest tests/unit/test_schema.py -v --tb=short
 
       # ── Unit tests (no model training) ──────────────────────────────────────
       - name: pytest — unit tests (features + utilities)
